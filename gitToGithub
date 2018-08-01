@@ -3,5 +3,7 @@ git to github
 2. cmd
 	git clone -link-
 3. go to the file 
-4. git add . 
-5. git push
+4. git commit -m "updata"
+#5. git config --global --edit 
+. git add . 
+. git push
