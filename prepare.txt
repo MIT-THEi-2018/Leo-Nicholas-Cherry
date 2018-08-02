@@ -1,0 +1,5 @@
+1. easy_install pip
+2. pip install clarifai
+3. pip install Pillow / easy_install Pillow
+4. api_key time out problem
+
