@@ -1,5 +1,11 @@
 import tkinter as tk
 from tkinter import filedialog
+from clarifai.rest import ClarifaiApp
+from clarifai.rest.client import Image as ClImg
+import pprint
+
+app = ClarifaiApp(api_key='9d1135521f834d35969e93e8b94fb624')
+model = app.models.get('general-v1.3')
 string_filename = ''
 # Call WIndow
 window = tk.Tk()
@@ -27,8 +33,11 @@ l.pack()    # 固定窗口位置
 def hit_me():
     global string_filename  #Call Global Var
     # Get file path
-    string_filename = filedialog.askopenfilename(initialdir = "/",title = "Select file",filetypes = (("jpeg files","*.jpg"),("all files","*.*")))
+    string_filename = filedialog.askopenfilename(initialdir = "/",
+        title = "Select file",
+        filetypes = (("jpeg files",".jpg"),("all files",".*")))
     # show path
+    print(string_filename)
   
 
 b = tk.Button(window, 
@@ -44,7 +53,17 @@ path = tk.Label(
 path.pack() 
 
 def call_api():
-    pass
+    image = ClImg(file_obj=open(path, 'rb'))
+    #output is a dictionary
+    result = model.predict([image])
+    #data is a list
+    datas = result['outputs']
+    outputs = datas[0]
+    concepts = outputs['data']
+    data = concepts['concepts']
+    target = data[0]
+    pprint.pprint(target['name'])
+
 c = tk.Button(window,
     text='submit',
     width=15, height=2,
