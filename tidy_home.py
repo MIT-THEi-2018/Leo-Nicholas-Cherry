@@ -67,10 +67,6 @@ def call_api():
     win.geometry("400x650")
     win.wm_attributes('-topmost',1)
     basewidth = 300
-    tk.Label().pack()
-    tk.Label().pack()
-    tk.Label().pack()
-    tk.Label().pack()
     frm = tk.Frame(win)
     frm.pack(side="top")
     frm_left = tk.Frame(frm,)
